@@ -1,0 +1,22 @@
+//版本
+syntax = "proto3";
+//作用域
+package gs;
+
+//注册服务
+service Greeter {
+  rpc SayHello (HelloRequest) returns(HelloReply){}
+  //超时GRPC
+  rpc HandleDuration (HelloRequest) returns(HelloReply){}
+  //自定义认证
+  rpc HandleAuth (HelloRequest) returns(HelloReply){}
+}
+
+message HelloRequest {
+  string name = 1;
+  int64 age = 2;
+}
+
+message HelloReply {
+  string message = 1;
+}
