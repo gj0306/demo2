@@ -6,6 +6,32 @@ import (
 	"time"
 )
 
+func TestChannelBaseDemo(t *testing.T)  {
+	/*
+	// 可以发送接收int
+	var c1 chan int
+	// 只能发送int
+	var c2 chan<- int
+	// 只能从chan接收int
+	var c3 <-chan int
+	*/
+	ch := make(chan int,10)
+	send := func(ch chan<- int) {
+		for i:=0;i<10;i++{
+			ch <- i
+		}
+	}
+	receive := func(ch <- chan int) {
+		for {
+			i := <-ch
+			fmt.Println(i)
+		}
+	}
+	go send(ch)
+	go receive(ch)
+	time.Sleep(time.Second)
+	fmt.Println("结束")
+}
 
 func TestChannelDemo(t *testing.T)  {
 	send := func(ch chan int, begin int) {
@@ -39,3 +65,4 @@ func TestChannelDemo(t *testing.T)  {
 	}
 
 }
+
