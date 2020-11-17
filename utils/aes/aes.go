@@ -67,3 +67,4 @@ func encodeURIComponent(str string) string {
 	r = strings.Replace(r, "+", "%20", -1)
 	return r
 }
+

@@ -137,7 +137,7 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// StreamClient is the client API for Stream service.
+// StreamClient is the client API for stream service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type StreamClient interface {
@@ -154,7 +154,7 @@ func NewStreamClient(cc *grpc.ClientConn) StreamClient {
 }
 
 func (c *streamClient) Conversations(ctx context.Context, opts ...grpc.CallOption) (Stream_ConversationsClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_Stream_serviceDesc.Streams[0], "/bs.Stream/Conversations", opts...)
+	stream, err := c.cc.NewStream(ctx, &_Stream_serviceDesc.Streams[0], "/bs.stream/Conversations", opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -184,7 +184,7 @@ func (x *streamConversationsClient) Recv() (*StreamResponse, error) {
 	return m, nil
 }
 
-// StreamServer is the server API for Stream service.
+// StreamServer is the server API for stream service.
 type StreamServer interface {
 	// 双向流式rpc，同时在请求参数前和响应参数前加上stream
 	Conversations(Stream_ConversationsServer) error
@@ -229,7 +229,7 @@ func (x *streamConversationsServer) Recv() (*StreamRequest, error) {
 }
 
 var _Stream_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "bs.Stream",
+	ServiceName: "bs.stream",
 	HandlerType: (*StreamServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
